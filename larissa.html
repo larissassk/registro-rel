@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><h1>Registro Larissa</h1></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Larissa</h1>
+  <ul id="tarefas">
+    <!-- Tarefas serão adicionadas aqui -->
+  </ul>
+  <input type="text" id="novaTarefa" placeholder="Nova Tarefa">
+  <button onclick="adicionarTarefa()">Adicionar</button>
+
+<script>
+  function adicionarTarefa() {
+  var tarefa = document.getElementById("novaTarefa").value;
+  var listaTarefas = document.getElementById("tarefas");
+  var novaLi = document.createElement("li");
+  novaLi.textContent = tarefa;
+  listaTarefas.appendChild(novaLi);
+  document.getElementById("novaTarefa").value = "";
+  salvarTarefas();
+}
+
+function carregarTarefas() {
+  var integrante = document.querySelector("h1").textContent;
+  var tarefasSalvas = localStorage.getItem("tarefas_" + integrante);
+  if (tarefasSalvas) {
+    var listaTarefas = document.getElementById("tarefas");
+    listaTarefas.innerHTML = tarefasSalvas;
+  }
+}
+
+function salvarTarefas() {
+  var integrante = document.querySelector("h1").textContent;
+  var listaTarefas = document.getElementById("tarefas").innerHTML;
+  localStorage.setItem("tarefas_" + integrante, listaTarefas);
+}
+
+window.onload = carregarTarefas;
+</script>
+</body>
+</html>
