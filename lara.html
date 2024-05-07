@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><h1>Registro lara</h1></title>
+  <title><h1>Registro Lara</h1></title>
   <link rel="stylesheet" href="style.css">
 </head>
-
+<style>
+  /* style.css */
+  /* ... (código CSS anterior) ... */
+</style>
 <body>
+  <div class="registrados">
+    <ul id="tarefas">
+      <!-- Tarefas serão adicionadas aqui -->
+    </ul>
+  </div>
   <h1>lara</h1>
-  <ul id="tarefas">
-    <!-- Tarefas serão adicionadas aqui -->
-  </ul>
-  <input type="text" id="novaTarefa" placeholder="Nova Tarefa">
-  <button onclick="adicionarTarefa()">Adicionar</button>
+  <div class="cartao">
+    <input type="text" name="titulo" id="titulo" placeholder="Titulo do registro">
+    <input type="text" id="descricao" name="descricao" placeholder="descricao...">
+    <input type="date" name="data" id="data" placeholder="data">
+    <button onclick="adicionarTarefa()">Adicionar</button>
+  </div>
+  <script src="script.js"></script> 
+  <script>
+    function adicionarTarefa() {
+  var titulo = document.getElementById("titulo").value;
+  var descricao = document.getElementById("descricao").value;
+  var data = document.getElementById("data").value;
 
-<script>
-  function adicionarTarefa() {
-  var tarefa = document.getElementById("novaTarefa").value;
   var listaTarefas = document.getElementById("tarefas");
-  var novaLi = document.createElement("li");
-  novaLi.textContent = tarefa;
-  listaTarefas.appendChild(novaLi);
-  document.getElementById("novaTarefa").value = "";
+
+  // Criar o cartão da tarefa
+  var cartao = document.createElement("div");
+  cartao.classList.add("cartao");
+
+  var tituloTarefa = document.createElement("h2");
+  tituloTarefa.textContent = titulo;
+  var dataTarefa = document.createElement("div");
+  dataTarefa.classList.add("data");
+  dataTarefa.textContent = data;
+  var descricaoTarefa = document.createElement("div");
+  descricaoTarefa.classList.add("descricao");
+  descricaoTarefa.textContent = descricao;
+
+  cartao.appendChild(tituloTarefa);
+  cartao.appendChild(dataTarefa);
+  cartao.appendChild(descricaoTarefa);
+
+  listaTarefas.appendChild(cartao);
+
+  // Limpar os campos de entrada
+  document.getElementById("titulo").value = "";
+  document.getElementById("descricao").value = "";
+  document.getElementById("data").value = "";
+
   salvarTarefas();
 }
 
@@ -35,11 +68,11 @@ function carregarTarefas() {
 
 function salvarTarefas() {
   var integrante = document.querySelector("h1").textContent;
-  var listaTarefas = document.getElementById("tarefas").innerHTML;
-  localStorage.setItem("tarefas_" + integrante, listaTarefas);
+  var listaTarefasHTML = document.getElementById("tarefas").innerHTML;
+  localStorage.setItem("tarefas_" + integrante, listaTarefasHTML);
 }
 
 window.onload = carregarTarefas;
-</script>
+  </script>
 </body>
 </html>
