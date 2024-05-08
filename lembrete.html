@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avisos e Lembretes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    flex-grow: 1;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+</style>
+<body>
+    <div class="container">
+        <h1>Meus Avisos e Lembretes</h1>
+        <div class="form-container">
+            <input type="text" id="avisoInput" placeholder="Digite um aviso ou lembrete">
+            <button id="addButton">Adicionar</button>
+        </div>
+        <ul id="avisosList">
+            </ul>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const avisoInput = document.getElementById('avisoInput');
+const addButton = document.getElementById('addButton');
+const avisosList = document.getElementById('avisosList');
+
+addButton.addEventListener('click', () => {
+    const avisoText = avisoInput.value;
+    if (avisoText !== '') {
+        const newAviso = document.createElement('li');
+        newAviso.textContent = avisoText;
+        avisosList.appendChild(newAviso);
+        avisoInput.value = ''; // Limpa o input após adicionar
+    }
+});
+    </script>
+</body>
+</html>
